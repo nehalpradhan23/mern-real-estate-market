@@ -1,5 +1,11 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <p>home</p>
+      <FaSearch />
+    </div>
+  );
 }
