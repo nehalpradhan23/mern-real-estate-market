@@ -31,7 +31,7 @@ export const signin = async (req, res, next) => {
     }
     // create token after successful match
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    // remove password from returning
+    // exclude password from returning
     const { password: pass, ...rest } = validUser._doc;
     // save token as cookie
     res
