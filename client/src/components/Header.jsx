@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   let location = useLocation(); // to know change in route
+  const { currentUser } = useSelector((state) => state.user);
   const [dropMenu, setDropMenu] = useState(true);
   const showMenu = () => {
     setDropMenu(!dropMenu);
@@ -51,10 +53,18 @@ export default function Header() {
               About
             </li>
           </Link>
-          <Link to={"/sign-in"}>
-            <li className="hidden sm:inline text-slate-700 hover:underline">
-              Sign in
-            </li>
+          <Link to={"/profile"}>
+            {currentUser ? (
+              <img
+                className="hidden sm:inline rounded-full h-7 w-7 object-cover"
+                src={currentUser.avatar}
+                alt="profile"
+              />
+            ) : (
+              <li className="hidden sm:inline text-slate-700 hover:underline">
+                Sign in
+              </li>
+            )}
           </Link>
           <FaBars className="sm:hidden text-2xl" onClick={showMenu} />
         </ul>
@@ -76,10 +86,18 @@ export default function Header() {
               About
             </li>
           </Link>
-          <Link to={"/sign-in"}>
-            <li className=" hover:underline p-1 px-9 py-3 hover:bg-slate-800">
-              Sign in
-            </li>
+          <Link to={"/profile"}>
+            {currentUser ? (
+              <img
+                className="rounded-full h-7 w-7 object-cover mb-4"
+                src={currentUser.avatar}
+                alt="profile"
+              />
+            ) : (
+              <li className=" hover:underline p-1 px-9 py-3 hover:bg-slate-800">
+                Sign in
+              </li>
+            )}
           </Link>
         </ul>
       </div>
