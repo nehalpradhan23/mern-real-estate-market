@@ -28,7 +28,7 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter); // user sign up test
-app.use("/api/listing", listingRouter);
+app.use("/api/listing", listingRouter); // create user listing
 
 // middleware for handling errors
 app.use((err, req, res, next) => {
