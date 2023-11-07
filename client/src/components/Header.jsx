@@ -36,6 +36,7 @@ export default function Header() {
   // ====================================================
   const handleSubmit = (e) => {
     e.preventDefault();
+    // get previous url info
     const urlParams = new URLSearchParams(window.location.search); // get url data
     urlParams.set("searchTerm", searchTerm); //set it to searchTerm
     const searchQuery = urlParams.toString(); // convert to string
