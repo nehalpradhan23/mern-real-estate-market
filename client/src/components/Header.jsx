@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
   let location = useLocation(); // to know change in route
   const { currentUser } = useSelector((state) => state.user);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
   const [dropMenu, setDropMenu] = useState(true);
   const showMenu = () => {
     setDropMenu(!dropMenu);
@@ -18,10 +20,27 @@ export default function Header() {
       setDropMenu(false);
     }
   };
+  // useeffect to close drop down menu after resize
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     setDropMenu(false);
   }, [location]);
+  // useeffect for search bar to set search value from url--------------------------
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm"); // get searchterm from url
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+  // ====================================================
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search); // get url data
+    urlParams.set("searchTerm", searchTerm); //set it to searchTerm
+    const searchQuery = urlParams.toString(); // convert to string
+    navigate(`/search?${searchQuery}`);
+  };
   // ====================================================
   return (
     <header className="bg-slate-300 shadow-md">
@@ -32,14 +51,21 @@ export default function Header() {
             <span className="text-slate-700">Estate</span>
           </h1>
         </Link>
-        {/* search bar */}
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+        {/* search bar -------------------------------------------*/}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-slate-100 p-3 rounded-lg flex items-center"
+        >
           <input
             type="text"
             placeholder="Search...."
             className="bg-transparent outline-none w-40 sm:w-64"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <FaSearch className="text-slate-600" />
+          <button className="">
+            <FaSearch className="text-slate-600" />
+          </button>
         </form>
         {/* right menu */}
         <ul className="flex gap-4">
