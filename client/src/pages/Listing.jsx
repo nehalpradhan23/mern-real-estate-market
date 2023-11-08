@@ -74,7 +74,11 @@ export default function Listing() {
             <div className="flex flex-col gap-2">
               <div className="flex">
                 <p className="text-3xl font-bold">
-                  {listing.address} - $ {listing.regularPrice} / month
+                  {listing.name} - ${" "}
+                  {listing.offer
+                    ? listing.discountPrice.toLocaleString("en-US")
+                    : listing.regularPrice.toLocaleString("en-US")}
+                  {listing.type === "rent" && " / month"}
                 </p>
               </div>
               {/* address ------- */}
@@ -105,7 +109,7 @@ export default function Listing() {
               <div className="">
                 {listing.offer && (
                   <p className="bg-green-700 px-8 py-2 w-[190px] text-white rounded-md text-center font-semibold text-lg">
-                    $ {listing.regularPrice - listing.discountPrice} Discount
+                    $ {listing.regularPrice - listing.discountPrice} OFF
                   </p>
                 )}
               </div>

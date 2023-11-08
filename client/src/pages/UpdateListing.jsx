@@ -301,7 +301,7 @@ export default function UpdateListing() {
                 name=""
                 id="regularPrice"
                 min={50}
-                max={100000}
+                max={10000000}
                 required
                 className="p-3 border border-gray-300 rounded-lg"
                 onChange={handleChange}
