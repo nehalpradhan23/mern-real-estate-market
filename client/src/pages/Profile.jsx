@@ -31,6 +31,7 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [showListingsLoading, setShowListingsLoading] = useState(false);
   const [userListings, setUserListings] = useState([]);
+  const [noListings, setNoListings] = useState(false);
   const dispatch = useDispatch();
   // ==================================================================
   useEffect(() => {
@@ -132,6 +133,9 @@ export default function Profile() {
       if (data.success === false) {
         setShowListingsError(true);
         return;
+      }
+      if (data.length === 0) {
+        setNoListings(true);
       }
       setUserListings(data);
       setShowListingsLoading(false);
@@ -249,7 +253,7 @@ export default function Profile() {
         {showListingsError ? "Error showing listings" : ""}
       </p>
       {/* display user listings ===========================*/}
-      {userListings.length < 1 && (
+      {noListings && (
         <h1 className="text-center mt-7 text-2xl font-semibold">
           You have no Listings
         </h1>
