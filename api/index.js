@@ -5,6 +5,7 @@ import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 dotenv.config();
 
 mongoose
@@ -15,6 +16,9 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+// run on server
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -30,6 +34,11 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter); // user sign up test
 app.use("/api/listing", listingRouter); // create user listing
 
+// to run on server
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 // middleware for handling errors
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
