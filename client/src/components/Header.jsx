@@ -38,45 +38,48 @@ export default function Header() {
     e.preventDefault();
     // get previous url info
     const urlParams = new URLSearchParams(window.location.search); // get url data
-    urlParams.set("searchTerm", searchTerm); //set it to searchTerm    
+    urlParams.set("searchTerm", searchTerm); //set it to searchTerm
     const searchQuery = urlParams.toString(); // convert to string
     navigate(`/search?${searchQuery}`);
   };
   // ====================================================
   return (
-    <header className="bg-slate-300 shadow-md">
+    <header className="bg-slate-950 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to={"/"}>
           <h1 className="font-bold text-lg sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">My</span>
-            <span className="text-slate-700">Estate</span>
+            {/* <span className="text-slate-500">My</span>
+            <span className="text-slate-950">Estate</span> */}
+            <span className="text-xl md:text-3xl bg-gradient-to-r from-sky-500 to-purple-500 text-transparent bg-clip-text">
+              MyEstate
+            </span>
           </h1>
         </Link>
         {/* search bar -------------------------------------------*/}
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg flex items-center"
+          className="bg-slate-100 hover:bg-slate-200 p-3 rounded-md flex items-center"
         >
           <input
             type="text"
             placeholder="Search...."
-            className="bg-transparent outline-none w-40 sm:w-64"
+            className="bg-transparent outline-none w-40 sm:w-[200px] md:w-[300px]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button className="">
-            <FaSearch className="text-slate-600" />
+            <FaSearch className="text-slate-600 hover:text-black hover:scale-110" />
           </button>
         </form>
         {/* right menu */}
-        <ul className="flex gap-4">
+        <ul className="flex gap-2 md:gap-4 text-white font-bold transition-all">
           <Link to={"/"}>
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline hover:bg-gradient-to-r from-sky-500 to-purple-700 p-2 rounded-md transition-all">
               Home
             </li>
           </Link>
           <Link to={"/about"}>
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline hover:bg-gradient-to-r from-sky-500 to-purple-700 p-2 rounded-md transition-all">
               About
             </li>
           </Link>
@@ -88,7 +91,7 @@ export default function Header() {
                 alt="profile"
               />
             ) : (
-              <li className="hidden sm:inline text-slate-700 hover:underline">
+              <li className="hidden sm:inline hover:bg-gradient-to-r from-sky-500 to-purple-700 p-2 rounded-md transition-all">
                 Sign in
               </li>
             )}

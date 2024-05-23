@@ -5,6 +5,7 @@ import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import ListingItem from "../components/ListingItem";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -48,49 +49,64 @@ export default function Home() {
   // ==========================================================
   return (
     <div>
-      {/* top */}
-      <div className="flex flex-col gap-6 py-28 px-3 max-w-6xl mx-auto">
-        <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
-          Find your next <span className="text-slate-500">perfect</span> <br />
-          place with ease
-        </h1>
-        <div className="text-gray-400 text-xs sm:text-sm">
-          MyEstate is the best place to find your next perfect place to live
-          <br />
-          We have a wide range of properties to choose from.
+      <div className="relative">
+        {/* top */}
+        {/* <div className="flex flex-col items-center gap-6 py-28 px-3 max-w-6xl mx-auto"> */}
+        <div className="max-w-6xl mx-auto flex justify-center">
+          <div className="flex flex-col items-center gap-6 py-[140px] absolute  z-50 w-[90%]">
+            <h1 className="text-slate-950 p-4 font-bold text-3xl sm:text-5xl md:text-6xl bg-white/40 backdrop-blur-lg text-center">
+              Find your next <span className="">perfect</span> <br />
+              place with ease
+            </h1>
+            <div className="text-balck p-3 text-xs sm:text-sm md:text-lg bg-white/50 backdrop-blur-lg">
+              MyEstate is the best place to find your next perfect place to live
+              <br />
+              We have a wide range of properties to choose from.
+            </div>
+            <Link
+              to={"/search"}
+              className="text-xs sm:text-lg text-white font-bold bg-gradient-to-r from-sky-500 to-purple-500 flex items-center gap-1 w-fit p-2 hover:scale-110 transition-all"
+            >
+              <span>See all Listings</span>
+              <span>
+                <FaArrowRight />
+              </span>
+            </Link>
+          </div>
         </div>
-        <Link
-          to={"/search"}
-          className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
-        >
-          Let's get started...
-        </Link>
+        {/* swiper ====================================*/}
+        <Swiper navigation className="">
+          {offerListings &&
+            offerListings.length > 0 &&
+            offerListings.map((listing) => (
+              <SwiperSlide>
+                <div
+                  style={{
+                    background: `url(${listing.imageUrls[0]}) center no-repeat`,
+                    backgroundSize: "cover",
+                  }}
+                  className="h-[500px]"
+                  key={listing._id}
+                ></div>
+              </SwiperSlide>
+            ))}
+        </Swiper>
       </div>
-      {/* swiper ====================================*/}
-      <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide>
-              <div
-                style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                  backgroundSize: "cover",
-                }}
-                className="h-[500px]"
-                key={listing._id}
-              ></div>
-            </SwiperSlide>
-          ))}
-      </Swiper>
       {/* listings ===================== */}
       <div className="max-w-[1400px] mx-auto p-3 flex flex-col gap-8 my-10">
         {/* offer listings ============================ */}
         {offerListings && offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">Recent offers</h2>
-              <Link to={"/search?offer=true"} className="text-sm text-blue-800 hover:underline">Show more offers</Link>
+              <h2 className="text-4xl font-semibold text-slate-600">
+                Recent offers
+              </h2>
+              <Link
+                to={"/search?offer=true"}
+                className="text-md text-blue-800 hover:underline"
+              >
+                Show more offers
+              </Link>
             </div>
             <div className="flex flex-wrap gap-4">
               {offerListings.map((listing) => (
@@ -99,12 +115,19 @@ export default function Home() {
             </div>
           </div>
         )}
-        {/* offer listings ============================ */}
+        {/* rent listings ============================ */}
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">For rent</h2>
-              <Link to={"/search?type=rent"} className="text-sm text-blue-800 hover:underline">Show more</Link>
+              <h2 className="text-4xl font-semibold text-slate-600">
+                For rent
+              </h2>
+              <Link
+                to={"/search?type=rent"}
+                className="text-md text-blue-800 hover:underline"
+              >
+                Show more
+              </Link>
             </div>
             <div className="flex flex-wrap gap-4">
               {rentListings.map((listing) => (
@@ -113,12 +136,19 @@ export default function Home() {
             </div>
           </div>
         )}
-        {/* offer listings ============================ */}
+        {/* sale listings ============================ */}
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">For sale</h2>
-              <Link to={"/search?type=sale"} className="text-sm text-blue-800 hover:underline">Show more offers</Link>
+              <h2 className="text-4xl font-semibold text-slate-600">
+                For sale
+              </h2>
+              <Link
+                to={"/search?type=sale"}
+                className="text-md text-blue-800 hover:underline"
+              >
+                Show more offers
+              </Link>
             </div>
             <div className="flex flex-wrap gap-4">
               {saleListings.map((listing) => (
