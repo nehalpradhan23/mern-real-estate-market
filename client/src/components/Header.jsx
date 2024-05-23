@@ -101,7 +101,7 @@ export default function Header() {
       </div>
       {/* open drop menu */}
       <div
-        className={`fixed bg-slate-600 right-0 sm:hidden ${
+        className={`fixed bg-slate-600 z-[500] right-0 sm:hidden ${
           dropMenu ? "inline" : "hidden"
         }`}
       >
