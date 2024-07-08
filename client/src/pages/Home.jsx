@@ -54,21 +54,22 @@ export default function Home() {
         {/* <div className="flex flex-col items-center gap-6 py-28 px-3 max-w-6xl mx-auto"> */}
         <div className="max-w-6xl mx-auto flex justify-center">
           <div className="flex flex-col items-center gap-6 py-[140px] absolute  z-50 w-[90%]">
-            <h1 className="text-slate-950 p-4 font-bold text-3xl sm:text-5xl md:text-6xl bg-white/40 backdrop-blur-lg text-center">
-              Find your next <span className="">perfect</span> <br />
+            <h1 className="text-slate-950 py-4 px-6 font-bold text-3xl sm:text-5xl md:text-6xl bg-white/50 backdrop-blur-xl text-center">
+              Find your next perfect
+              <br />
               place with ease
             </h1>
-            <div className="text-balck p-3 text-xs sm:text-sm md:text-lg bg-white/50 backdrop-blur-lg">
+            <div className="text-balck p-3 text-xs sm:text-sm md:text-xl bg-white/60 backdrop-blur-xl">
               MyEstate is the best place to find your next perfect place to live
               <br />
               We have a wide range of properties to choose from.
             </div>
             <Link
               to={"/search"}
-              className="text-xs sm:text-lg text-white font-bold bg-gradient-to-r from-sky-500 to-purple-500 flex items-center gap-1 w-fit p-2 hover:scale-110 transition-all"
+              className="text-xs sm:text-lg xl:text-2xl text-white font-bold bg-gradient-to-r from-sky-500 to-purple-500 flex items-center gap-1 w-fit py-3 px-12 hover:scale-110 transition-all"
             >
               <span>See all Listings</span>
-              <span>
+              <span className="mt-1">
                 <FaArrowRight />
               </span>
             </Link>

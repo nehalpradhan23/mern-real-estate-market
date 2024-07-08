@@ -53,23 +53,25 @@ export default function Listing() {
       )}
       {/* ======================================= */}
       {listing && !loading && !error && (
-        <div>
+        <div className="flex mt-1 md:mt-12 p-4 md:px-8 gap-4 max-lg:flex-col">
           {/* main image slider =========================== */}
-          <Swiper navigation>
-            {listing.imageUrls.map((url) => (
-              <SwiperSlide key={url}>
-                <div
-                  className="h-[550px]"
-                  style={{
-                    background: `url(${url}) center no-repeat`,
-                    backgroundSize: "cover",
-                  }}
-                ></div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <div className="bg-red-400 w-[40%] max-lg:w-full">
+            <Swiper navigation>
+              {listing.imageUrls.map((url) => (
+                <SwiperSlide key={url}>
+                  <div
+                    className="h-[550px]"
+                    style={{
+                      background: `url(${url}) center no-repeat`,
+                      backgroundSize: "cover",
+                    }}
+                  ></div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
           {/* end image slider ================================ */}
-          <div className="mt-5 mb-10 px-4 mx-auto lg:max-w-6xl flex flex-col gap-4">
+          <div className="mt-5 mb-10 px-4 flex flex-col gap-4">
             {/* name and price --------------*/}
             <div className="flex flex-col gap-2">
               <div className="flex">

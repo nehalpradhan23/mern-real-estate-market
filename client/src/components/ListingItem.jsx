@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function ListingItem({ listing }) {
   return (
     <div className="hover:bg-gradient-to-r from-blue-400 to-purple-700 p-1 rounded-lg transition-all max-sm:w-full">
-      <div className="bg-white hover:bg-gray-100 shadow-md hover:shadow-xl transition-all overflow-hidden rounded-lg w-full sm:w-[330px]">
+      <div className="bg-white hover:bg-gray-100 shadow-md hover:shadow-xl transition-all overflow-hidden rounded-sm w-full sm:w-[330px]">
         <Link to={`/listing/${listing._id}`}>
           <img
             src={listing.imageUrls[0]}
@@ -35,24 +35,27 @@ export default function ListingItem({ listing }) {
             <p className="text-sm text-gray-600 line-clamp-2">
               {listing.description}
             </p>
-            <p className="text-slate-500 mt-2 font-semibold">
-              ${" "}
-              {listing.offer
-                ? listing.discountPrice.toLocaleString("en-US")
-                : listing.regularPrice.toLocaleString("en-US")}
-              {listing.offer && " / month"}
-            </p>
-            {/* other details ========================== */}
-            <div className="text-slate-700 flex gap-4">
-              <div className="font-bold text-sm">
-                {listing.bedrooms > 1
-                  ? `${listing.bedrooms} beds`
-                  : `${listing.bedrooms} bed`}
-              </div>
-              <div className="font-bold text-sm">
-                {listing.bathrooms > 1
-                  ? `${listing.bathrooms} baths`
-                  : `${listing.bathrooms} bath`}
+            <div className="flex items-center justify-between">
+              {/* price */}
+              <p className="text-slate-500 font-semibold">
+                ${" "}
+                {listing.offer
+                  ? listing.discountPrice.toLocaleString("en-US")
+                  : listing.regularPrice.toLocaleString("en-US")}
+                {listing.offer && " / month"}
+              </p>
+              {/* other details ========================== */}
+              <div className="text-slate-700 flex gap-4 items-center">
+                <div className="font-bold text-sm">
+                  {listing.bedrooms > 1
+                    ? `${listing.bedrooms} beds`
+                    : `${listing.bedrooms} bed`}
+                </div>
+                <div className="font-bold text-sm">
+                  {listing.bathrooms > 1
+                    ? `${listing.bathrooms} baths`
+                    : `${listing.bathrooms} bath`}
+                </div>
               </div>
             </div>
           </div>

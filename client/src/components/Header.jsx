@@ -58,12 +58,12 @@ export default function Header() {
         {/* search bar -------------------------------------------*/}
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 hover:bg-slate-200 p-3 rounded-md flex items-center"
+          className="bg-slate-100 hover:bg-slate-200 p-3 rounded-sm flex items-center"
         >
           <input
             type="text"
             placeholder="Search...."
-            className="bg-transparent outline-none w-40 sm:w-[200px] md:w-[300px]"
+            className="bg-transparent outline-none w-40 sm:w-[200px] md:w-[300px] lg:w-[400px]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -78,11 +78,11 @@ export default function Header() {
               Home
             </li>
           </Link>
-          <Link to={"/about"}>
+          {/* <Link to={"/about"}>
             <li className="hidden sm:inline hover:bg-gradient-to-r from-sky-500 to-purple-700 p-2 rounded-md transition-all">
               About
             </li>
-          </Link>
+          </Link> */}
           <Link to={"/profile"}>
             {currentUser ? (
               <img
